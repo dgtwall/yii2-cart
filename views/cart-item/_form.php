@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'cartId')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'shopId')->textInput() ?>
 
     <?= $form->field($model, 'productId')->textInput() ?>
@@ -28,7 +30,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'payPrice')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'productPrice')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'addTime')->textInput() ?>
 
@@ -38,7 +39,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'deletedTime')->textInput() ?>
 
-    <?= $form->field($model, 'cartId')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -66,8 +66,7 @@
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
-        }
-    },
+        },
     "repositories": [
         {
             "type": "composer",

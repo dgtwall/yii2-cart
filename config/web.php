@@ -42,14 +42,13 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => false,
             'rules' => [
+                'cart-item/calTotalPrice' => 'cart-item/cal-total-price',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

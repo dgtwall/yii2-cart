@@ -25,10 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </form>
         <?php endforeach; ?>
 
-        <form method="get" action="<?= Yii::$app->urlManager->createUrl(['cart-item/calTotalPrice', 'cartId' => $cart->id]) ?>" style="margin-right:10px">
-            <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>">
-            <button type="submit" class="btn btn-success">总价计算</button>
-        </form>
+        <a href="<?= Yii::$app->urlManager->createUrl(['cart-item/cal-total-price', 'cartId' => $cart->id]) ?>" class="btn btn-success">总价计算</a>
     </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

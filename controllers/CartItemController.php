@@ -45,8 +45,6 @@ class CartItemController extends Controller
     {
         $searchModel = new CartItemSearch();
         $cart = Cart::getUserCart();
-        //如果购物车为空 则创建一个购物车
-        $cart = Cart::findOne(['id' => $cart['id']]);
 
         $queryParams = $this->request->queryParams;
         $queryParams['CartItemSearch']['cartId'] = $cart['id'];
@@ -149,52 +147,29 @@ class CartItemController extends Controller
         ]);
     }
 
-    public function actionClear($id){
-       //删除购物车表
-
-        //删除购物车商品表
-    }
-
-    public function discount()
-    {
-        $productIds = $this->query->post();
-        $products = [];
-        foreach ($products as &$product) {
-            //此处伪代码计算出商品参加的活动获得的折扣
-            $discountPrice = 100;
-            $product['payPrice'] = $this->calDiscountByProduct($product);
-            unset($product);
-        }
-
-        $fullDiscount = array_column($products, 'payPrice');
-        foreach ($products as &$product) {
-            $product['payPrice'] = $this->calFullDiscountByProduct($product);
-            unset($product);
-        }
-    }
-
-    public function actionCalTotalPrice()
-    {
-        $post = $this->query->get();
-
-    }
-
     /**
-     * 计算商品折扣后的价格
-     * @param $product
-     * @return mixed
+     * 删除失效商品
+     * @param $id
+     * @return void
      */
-    public function calDiscountByProduct($product)
-    {
-        return  $product['price'] - $product['discountPrice'];
+    public function actionClearInvalid($id){
     }
 
     /**
      *
      */
-    public function calFullDiscountByProduct()
+    public function actionCalTotalPrice()
     {
-
+        $cart = Cart::getUserCart();
+        $cartItems = CartItem::find()->where(['cartId' => $cart['id']])->asArray()->all();
+        $result = CartItem::calCartItemsPrice($cartItems);
+        echo '商品总价:' . $result['allTotalPrice'] .'元'. '<br>';
+/*        echo '商品优惠价格--' . $result['allDiscountPrice'] .'元'. '<br>';
+        echo '商品支付价格--' . $result['realPayPrice'] .'元'. '<br>';
+        echo '<pre>';
+        var_dump($result);
+        echo '</pre>';
+        exit;*/
     }
 
 
